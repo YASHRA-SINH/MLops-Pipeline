@@ -35,23 +35,23 @@ model:
   #   random_state: 42
 
 # # experimenting (feature restricted tree)
-  # params:
-  #   criterion: gini
-  #   max_depth: 6
-  #   min_samples_split: 4
-  #   min_samples_leaf: 2
-  #   max_features: log2
-  #   random_state: 42
+  params:
+    criterion: gini
+    max_depth: 6
+    min_samples_split: 4
+    min_samples_leaf: 2
+    max_features: log2
+    random_state: 42
 
 
 # experimenting (unrestricted tree)
-  params:
-    criterion: gini
-    max_depth: null      # No limit → full depth
-    min_samples_split: 2
-    min_samples_leaf: 1
-    random_state: 42
-    max_features: log2
+  # params:
+  #   criterion: gini
+  #   max_depth: null      # No limit → full depth
+  #   min_samples_split: 2
+  #   min_samples_leaf: 1
+  #   random_state: 42
+  #   max_features: log2
 
 training:
   test_size: 0.2
