@@ -1,0 +1,88 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: python src/preprocess.py
+    deps:
+    - path: src/preprocess.py
+      hash: md5
+      md5: 1085fdd101c880df097e1c3b83f50557
+      size: 1042
+    params:
+      params.yaml:
+        preprocessing:
+          scale: true
+          encode: true
+    outs:
+    - path: data/processed/test.csv
+      hash: md5
+      md5: 796931767ce2e6f00420f79d03c81837
+      size: 9302
+    - path: data/processed/train.csv
+      hash: md5
+      md5: 0c8a73885abe0e991388d21186336f55
+      size: 36734
+  train:
+    cmd: python src/train.py
+    deps:
+    - path: data/processed/train.csv
+      hash: md5
+      md5: 0c8a73885abe0e991388d21186336f55
+      size: 36734
+    - path: src/train.py
+      hash: md5
+      md5: ff6886125c52245e82cd771be6f68986
+      size: 549
+    params:
+      params.yaml:
+        model:
+          type: DecisionTreeClassifier
+          params:
+            criterion: gini
+            max_depth:
+            min_samples_split: 2
+            min_samples_leaf: 1
+            random_state: 42
+            max_features: log2
+        training:
+          test_size: 0.2
+          random_state: 42
+    outs:
+    - path: models/model.pkl
+      hash: md5
+      md5: 2c861d29b37673e2ab4935195f4078ba
+      size: 2936
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+    - path: data/processed/test.csv
+      hash: md5
+      md5: 796931767ce2e6f00420f79d03c81837
+      size: 9302
+    - path: models/model.pkl
+      hash: md5
+      md5: 2c861d29b37673e2ab4935195f4078ba
+      size: 2936
+    - path: src/evaluate.py
+      hash: md5
+      md5: 6c3c7e8a4725ce5ce131dc4e28e7465e
+      size: 1449
+    params:
+      params.yaml:
+        model:
+          type: DecisionTreeClassifier
+          params:
+            criterion: gini
+            max_depth:
+            min_samples_split: 2
+            min_samples_leaf: 1
+            random_state: 42
+            max_features: log2
+    outs:
+    - path: experiments/results.json
+      hash: md5
+      md5: 8df1c4f121c37310f8e66dddee04f693
+      size: 71
+    - path: metrics.json
+      hash: md5
+      md5: 8df1c4f121c37310f8e66dddee04f693
+      size: 71

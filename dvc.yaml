@@ -4,8 +4,7 @@ stages:
     deps:
       - src/preprocess.py
     params:
-      - preprocessing.scale
-      - preprocessing.encode
+      - preprocessing
     outs:
       - data/processed/train.csv
       - data/processed/test.csv
@@ -16,9 +15,8 @@ stages:
       - src/train.py
       - data/processed/train.csv
     params:
-      - model.params
-      - training.test_size
-      - training.random_state
+      - model
+      - training
     outs:
       - models/model.pkl
 
@@ -29,8 +27,9 @@ stages:
       - models/model.pkl
       - data/processed/test.csv
     params:
-      - model.params 
+      - model
     outs:
       - experiments/results.json
     metrics:
       - metrics.json
+    

@@ -1,0 +1,58 @@
+dataset: data/raw.csv
+
+# preprocessing:  #1
+#   scale: true
+#   encode: false
+
+preprocessing:   #2
+  scale: true        
+  encode: true       
+
+
+model:
+  type: DecisionTreeClassifier
+  # params:
+  #   criterion: gini
+  #   max_depth: 5
+  #   min_samples_split: 5
+  #   min_samples_leaf: 3
+  #   max_features: sqrt
+  #   random_state: 42
+
+# EXPERIMENTING 2
+  # params:
+  #   criterion: entropy
+  #   max_depth: 6
+  #   min_samples_split: 4
+  #   min_samples_leaf: 2
+  #   random_state: 42
+
+  # params:
+  #   criterion: entropy         
+  #   max_depth: 4               
+  #   min_samples_split: 8       
+  #   min_samples_leaf: 4        
+  #   random_state: 42
+
+# # experimenting (feature restricted tree)
+  # params:
+  #   criterion: gini
+  #   max_depth: 6
+  #   min_samples_split: 4
+  #   min_samples_leaf: 2
+  #   max_features: log2
+  #   random_state: 42
+
+
+# experimenting (unrestricted tree)
+  params:
+    criterion: gini
+    max_depth: null      # No limit → full depth
+    min_samples_split: 2
+    min_samples_leaf: 1
+    random_state: 42
+    max_features: log2
+
+training:
+  test_size: 0.2
+  random_state: 42
