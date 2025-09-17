@@ -20,12 +20,12 @@ model:
   #   random_state: 42
 
 # EXPERIMENTING 2
-  # params:
-  #   criterion: entropy
-  #   max_depth: 6
-  #   min_samples_split: 4
-  #   min_samples_leaf: 2
-  #   random_state: 42
+  params:
+    criterion: entropy
+    max_depth: 6
+    min_samples_split: 4
+    min_samples_leaf: 2
+    random_state: 42
 
   # params:
   #   criterion: entropy         
@@ -35,13 +35,13 @@ model:
   #   random_state: 42
 
 # # experimenting (feature restricted tree)
-  params:
-    criterion: gini
-    max_depth: 6
-    min_samples_split: 4
-    min_samples_leaf: 2
-    max_features: log2
-    random_state: 42
+  # params:
+  #   criterion: gini
+  #   max_depth: 6
+  #   min_samples_split: 4
+  #   min_samples_leaf: 2
+  #   max_features: log2
+  #   random_state: 42
 
 
 # experimenting (unrestricted tree)
